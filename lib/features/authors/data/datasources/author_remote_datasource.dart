@@ -41,7 +41,12 @@ class AuthorRemoteDatasource {
 
   Future<Author> updateAuthor(Author author) async {
     try {
-      final response = await DioClient.instance.put('/authors/${author.id}', data: author.toJson());
+      final data = {
+        'name': author.name,
+        'lastname': author.lastname,
+        'birthDate': author.birthDate.toIso8601String(),
+      };
+      final response = await DioClient.instance.put('/authors/${author.id}', data: data);
       return Author.fromJson(response.data);
     } on DioException catch (e) {
       DioClient.handleDioException(e);
