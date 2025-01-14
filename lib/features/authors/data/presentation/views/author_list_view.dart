@@ -16,14 +16,11 @@ class _AuthorListViewState extends State<AuthorListView> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<AuthorProvider>(context, listen: false).getAuthors();
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final authorProvider = Provider.of<AuthorProvider>(context);
+    final authorProvider = Provider.of<AuthorProvider>(context, listen: true);
 
     return Column(
       children: [
@@ -91,7 +88,7 @@ class AuthorListTile extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AddAuthorForm(author: author),
+                    builder: (context) => AuthorFormPage(author: author),
                   ));
             },
           ),

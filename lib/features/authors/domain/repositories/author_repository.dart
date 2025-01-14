@@ -1,4 +1,3 @@
-
 import 'package:authors_books/features/authors/data/models/author_model.dart';
 
 abstract class AuthorRepository {

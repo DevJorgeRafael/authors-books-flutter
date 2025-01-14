@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           _selectedIndex == 0 ? IconButton(
             icon: const Icon(Icons.person_add_alt_rounded),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const AddAuthorForm(author: null)));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const AuthorFormPage(author: null)));
             },
           ): 
           IconButton(

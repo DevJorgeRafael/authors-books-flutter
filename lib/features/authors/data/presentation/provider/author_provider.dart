@@ -31,9 +31,6 @@ class AuthorProvider with ChangeNotifier{
       _isLoading = false;
       notifyListeners();
     }
-    
-    _isLoading = false;
-    notifyListeners();
   }
 
   Future<void> createAuthor(Author author) async {

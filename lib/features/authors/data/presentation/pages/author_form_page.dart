@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class AddAuthorForm extends StatefulWidget {
+class AuthorFormPage extends StatefulWidget {
   final Author? author;
 
-  const AddAuthorForm({super.key, required this.author});
+  const AuthorFormPage({super.key, this.author});
 
   @override
-  State<AddAuthorForm> createState() => _AddAuthorFormState();
+  State<AuthorFormPage> createState() => _AuthorFormPageState();
 }
 
-class _AddAuthorFormState extends State<AddAuthorForm> {
+class _AuthorFormPageState extends State<AuthorFormPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _lastnameController = TextEditingController();
