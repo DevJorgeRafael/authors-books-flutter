@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:authors_books/core/utils/date_formatter.dart';
+
 Author authorFromJson(String str) => Author.fromJson(json.decode(str));
 
 String authorToJson(Author data) => json.encode(data.toJson());
@@ -18,10 +20,10 @@ class Author {
   });
 
   factory Author.fromJson(Map<String, dynamic> json) => Author(
-        id: json["id"],
+        id: json["id"] as int,
         name: json["name"],
         lastname: json["lastname"],
-        birthDate: DateTime.parse(json["birthDate"]),
+        birthDate: DateTime.parse(json["birthDate"] as String),
       );
 
   Map<String, dynamic> toJson() => {
@@ -30,4 +32,6 @@ class Author {
         "lastname": lastname,
         "birthDate": birthDate.toIso8601String(),
       };
+
+  String get formattedBirthDate => DateFormatter.formatDate(birthDate);
 }

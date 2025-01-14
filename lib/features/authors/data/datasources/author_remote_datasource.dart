@@ -1,29 +1,61 @@
 import 'package:authors_books/core/dio_client.dart';
 import 'package:authors_books/features/authors/data/models/author_model.dart';
+import 'package:dio/dio.dart';
 
 class AuthorRemoteDatasource {
-
   Future<List<Author>> getAllAuthors() async {
-    final resposne = await DioClient.instance.get('/authors');
-    return (resposne.data as List).map((e) => Author.fromJson(e)).toList();
+    try {
+      final response = await DioClient.instance.get('/authors');
+      return (response.data as List).map((e) => Author.fromJson(e)).toList();
+    } on DioException catch (e) {
+      DioClient.handleDioException(e);
+      rethrow;
+    }
   }
 
   Future<Author> getAuthor(int id) async {
-    final resposne = await DioClient.instance.get('/authors/$id');
-    return Author.fromJson(resposne.data);
+    try {
+      final response = await DioClient.instance.get('/authors/$id');
+      return Author.fromJson(response.data);
+    } on DioException catch (e) {
+      DioClient.handleDioException(e);
+      rethrow;
+    }
   }
 
   Future<Author> createAuthor(Author author) async {
-    final resposne = await DioClient.instance.post('/authors', data: author.toJson());
-    return Author.fromJson(resposne.data);
+    try {
+      final data = {
+        'name': author.name,
+        'lastname': author.lastname,
+        'birthDate': author.birthDate.toIso8601String(),
+      };
+      final response = await DioClient.instance.post('/authors', data: data);
+
+      return Author.fromJson(response.data);
+    } on DioException catch (e) {
+      DioClient.handleDioException(e);
+      rethrow;
+    }
   }
 
   Future<Author> updateAuthor(Author author) async {
-    final resposne = await DioClient.instance.put('/authors/${author.id}', data: author.toJson());
-    return Author.fromJson(resposne.data);
+    try {
+      final response = await DioClient.instance.put('/authors/${author.id}', data: author.toJson());
+      return Author.fromJson(response.data);
+    } on DioException catch (e) {
+      DioClient.handleDioException(e);
+      rethrow;
+    }
   }
 
-  Future<void> deleteAuthor(int id) async {
-    await DioClient.instance.delete('/authors/$id');
+  Future<bool> deleteAuthor(int id) async {
+    try {
+      await DioClient.instance.delete('/authors/$id');
+      return true;
+    } on DioException catch (e) {
+      DioClient.handleDioException(e);
+      rethrow;
+    }
   }
 }

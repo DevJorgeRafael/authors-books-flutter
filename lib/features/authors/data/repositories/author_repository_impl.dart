@@ -9,27 +9,47 @@ class AuthorRepositoryImpl implements AuthorRepository {
 
   @override
   Future<Author> createAuthor(Author author) {
-    return remoteDatasource.createAuthor(author);
+    try {
+      return remoteDatasource.createAuthor(author);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Future<void> deleteAuthor(int id) {
-    return remoteDatasource.deleteAuthor(id);
+    try {
+      return remoteDatasource.deleteAuthor(id);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Future<Author> getAuthor(int id) {
-    return remoteDatasource.getAuthor(id);
+    try {
+      return remoteDatasource.getAuthor(id);
+    } catch (e) {
+      rethrow;
+    }  
   }
 
   @override
   Future<List<Author>> getAuthors() {
-    return remoteDatasource.getAllAuthors();
+    try {
+      return remoteDatasource.getAllAuthors();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Future<Author> updateAuthor(Author author) {
-    return remoteDatasource.updateAuthor(author);
+    try {
+      return remoteDatasource.updateAuthor(author);
+    } catch (e) {
+      rethrow;
+    }
   }
 
 }
