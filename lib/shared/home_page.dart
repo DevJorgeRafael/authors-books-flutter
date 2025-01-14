@@ -1,3 +1,4 @@
+import 'package:authors_books/features/authors/data/presentation/pages/add_author_form.dart';
 import 'package:authors_books/features/authors/data/presentation/views/author_list_view.dart';
 import 'package:authors_books/features/books/data/presentation/views/book_list_view.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,9 @@ class _HomePageState extends State<HomePage> {
         actions: [
           _selectedIndex == 0 ? IconButton(
             icon: const Icon(Icons.person_add_alt_rounded),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const AddAuthorForm(author: null)));
+            },
           ): 
           IconButton(
             icon: const Icon(Icons.add),
@@ -50,8 +53,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  
 }
 
 Widget _customBottomNavigationBar({
@@ -60,14 +61,23 @@ Widget _customBottomNavigationBar({
 }) {
   return BottomNavigationBar(
       elevation: 4,
-      type: BottomNavigationBarType.fixed,
+      type: BottomNavigationBarType.shifting,
+      backgroundColor: Colors.white,
       currentIndex: selectedIndex,
       onTap: (value) {
         onItemSelected(value);
       },
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: "Autores"),
-        BottomNavigationBarItem(icon: Icon(Icons.library_books_rounded), label: "Libros"),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person_rounded), 
+          label: "Autores",
+          backgroundColor: Colors.blue
+          ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.library_books_rounded), 
+          label: "Libros",
+          backgroundColor: Colors.blue
+          ),
       ],
     );
 }
