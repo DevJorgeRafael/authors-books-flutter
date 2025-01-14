@@ -1,5 +1,5 @@
 import 'package:authors_books/features/authors/data/models/author_model.dart';
-import 'package:authors_books/features/authors/data/presentation/pages/add_author_form.dart';
+import 'package:authors_books/features/authors/data/presentation/pages/author_form_page.dart';
 import 'package:authors_books/features/authors/data/presentation/pages/author_details_page.dart';
 import 'package:authors_books/features/authors/data/presentation/provider/author_provider.dart';
 import 'package:flutter/material.dart';

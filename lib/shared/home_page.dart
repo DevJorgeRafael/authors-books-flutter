@@ -1,4 +1,4 @@
-import 'package:authors_books/features/authors/data/presentation/pages/add_author_form.dart';
+import 'package:authors_books/features/authors/data/presentation/pages/author_form_page.dart';
 import 'package:authors_books/features/authors/data/presentation/views/author_list_view.dart';
 import 'package:authors_books/features/books/data/presentation/views/book_list_view.dart';
 import 'package:flutter/material.dart';
