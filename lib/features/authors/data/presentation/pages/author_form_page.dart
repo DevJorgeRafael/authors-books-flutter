@@ -2,6 +2,7 @@ import 'package:authors_books/features/authors/data/models/author_model.dart';
 import 'package:authors_books/features/authors/data/presentation/provider/author_provider.dart';
 import 'package:authors_books/shared/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class AddAuthorForm extends StatefulWidget {
@@ -27,8 +28,11 @@ class _AddAuthorFormState extends State<AddAuthorForm> {
     if (widget.author != null) {
       _nameController.text = widget.author!.name;
       _lastnameController.text = widget.author!.lastname;
-      _birthDateController.text =
-          '${widget.author!.birthDate.day}-${widget.author!.birthDate.month}-${widget.author!.birthDate.year}';
+      
+      // Formatear la fecha a DD-MM-YYYY
+      final birthDate = widget.author!.birthDate;
+      final formattedDate = DateFormat('dd-MM-yyyy').format(birthDate);
+      _birthDateController.text = formattedDate;
     }
   }
 
