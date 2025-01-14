@@ -1,24 +1,30 @@
-import 'package:authors_books/features/authors/data/presentation/provider/author_provider.dart';
-import 'package:authors_books/injection_container.dart';
-import 'package:authors_books/shared/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:authors_books/features/authors/data/datasources/author_remote_datasource.dart';
+import 'package:authors_books/features/authors/data/presentation/provider/author_provider.dart';
+import 'package:authors_books/features/authors/data/repositories/author_repository_impl.dart';
 
+/// Configuración de la aplicación con los Providers
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Widget home;
+
+  const MyApp({required this.home, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => sl<AuthorProvider>()),
+        ChangeNotifierProvider(
+          create: (_) => AuthorProvider(
+            repository: AuthorRepositoryImpl(
+              remoteDatasource: AuthorRemoteDatasource(),
+            ),
+          ),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/',
-        routes: {
-          '/': (context) => const HomePage(),
-        },
+        home: home,
       ),
     );
   }
