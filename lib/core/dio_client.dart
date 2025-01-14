@@ -1,3 +1,4 @@
+import 'package:authors_books/core/exception.dart';
 import 'package:dio/dio.dart';
 
 class DioClient {
@@ -10,4 +11,14 @@ class DioClient {
       }));
 
   static Dio get instance => _dio;
+
+  static void handleDioException(DioException error) {
+    if (error.response != null) {
+      throw ServerException(
+        error.response?.data['message'] ?? 'Error desconocido del servidor'
+      );
+    } else {
+      throw NetWorkException('Error de red: $error');
+    }
+  }
 }
