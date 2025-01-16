@@ -71,7 +71,7 @@ class BookListTile extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AddAuthorForm(author: author),
+                    builder: (context) => AuthorForm(author: author),
                   ));
             },
           ),
